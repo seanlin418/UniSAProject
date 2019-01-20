@@ -3,3 +3,6 @@
 ################################################################################
 
 /UniSA.Api/bin
+/UniSA.Api/obj/Debug
+/UniSA.Web/bin
+/UniSA.Web/obj/Debug
