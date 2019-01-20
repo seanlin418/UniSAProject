@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniSA.Api", "UniSA.Api\UniSA.Api.csproj", "{4F20277D-0C5D-41AE-AAED-5BB6F8ED9985}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniSA.Web", "UniSA.Web\UniSA.Web.csproj", "{FAD84E68-1B68-42A2-87E8-03F71381099B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F20277D-0C5D-41AE-AAED-5BB6F8ED9985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F20277D-0C5D-41AE-AAED-5BB6F8ED9985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F20277D-0C5D-41AE-AAED-5BB6F8ED9985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F20277D-0C5D-41AE-AAED-5BB6F8ED9985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAD84E68-1B68-42A2-87E8-03F71381099B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAD84E68-1B68-42A2-87E8-03F71381099B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAD84E68-1B68-42A2-87E8-03F71381099B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAD84E68-1B68-42A2-87E8-03F71381099B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6D646BF8-74D5-42AA-85F6-F5E9C540E155}
+	EndGlobalSection
+EndGlobal

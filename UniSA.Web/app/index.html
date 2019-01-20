@@ -1,0 +1,44 @@
+﻿<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="utf-8" />
+    <title>UniSA Allowcate+</title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-sandstone.min.css" rel="stylesheet" />
+</head>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#/">UniSApp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#/signup">SignUp</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#/login">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <ng-view></ng-view>
+</div>
+<body>
+    <script src="../Scripts/angular.js"></script>
+    <script src="../Scripts/angular-local-storage.min.js"></script>
+    <script src="../Scripts/jquery-3.3.1.min.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+    <script src="../Scripts/angular-resource.min.js"></script>
+    <script src="../Scripts/angular-route.min.js"></script>
+    <script src="../app/app.js"></script>
+    <script src="../app/home/home-controller.js"></script>
+    <script src="../app/authentication/authService.js"></script>
+    <script src="../app/authentication/signup-controller.js"></script>
+    <script src="../app/authentication/login-controller.js"></script>
+</body>
+</html>
