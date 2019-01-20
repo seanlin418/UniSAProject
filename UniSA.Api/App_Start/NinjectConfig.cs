@@ -3,6 +3,7 @@ using System;
 using System.Reflection;
 using Ninject.Web.Common;
 using UniSA.Api.Repos;
+using UniSA.Api.Data;
 
 namespace UniSA.Api
 {
@@ -20,7 +21,7 @@ namespace UniSA.Api
 
         private static void RegisterServices(KernelBase kernel)
         {
-            kernel.Bind<UniDBContext>().To<UniDBContext>().InRequestScope();
+            kernel.Bind<ApplicationDbContext>().To<ApplicationDbContext>().InRequestScope();
             kernel.Bind<IAuthRepository>().To<AuthRepository>().InRequestScope();
             kernel.Bind<IClientRepository>().To<ClientRepository>().InRequestScope();
         }

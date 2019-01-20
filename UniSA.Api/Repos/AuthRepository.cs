@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using UniSA.Api.ViewModels;
-using UniSA.Api.Repos;
+using UniSA.Api.Data;
 
 namespace UniSA.Api.Repos
 {
     public class AuthRepository : IAuthRepository, IDisposable
     {
-        private UniDBContext _ctx;
+        private ApplicationDbContext _ctx;
         private UserManager<IdentityUser> _userManager;
 
         //Empty constructor is required by Startup Configuration, 
         //which required signture of Configuration (IAppBuilder app) with only IAppBuilder as input param.
         public AuthRepository()
         {
-            _ctx = new UniDBContext();
+            _ctx = new ApplicationDbContext();
             _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
         }
 
-        public AuthRepository(UniDBContext ctx)
+        public AuthRepository(ApplicationDbContext ctx)
         {
             this._ctx = ctx;
             this._userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));

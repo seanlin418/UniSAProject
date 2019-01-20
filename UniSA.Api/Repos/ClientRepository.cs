@@ -4,21 +4,21 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using UniSA.Api;
+using UniSA.Api.Data;
 using UniSA.Api.Models.AppClients;
 
 namespace UniSA.Api.Repos
 {
     public class ClientRepository : IClientRepository, IDisposable
     {
-        private UniDBContext _ctx;
+        private ApplicationDbContext _ctx;
 
         public ClientRepository()
         {
-            this._ctx = new UniDBContext();
+            this._ctx = new ApplicationDbContext();
         }
 
-        public ClientRepository(UniDBContext ctx)
+        public ClientRepository(ApplicationDbContext ctx)
         {
             this._ctx = ctx;
         }
