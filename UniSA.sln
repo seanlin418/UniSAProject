@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniSA.Api", "UniSA.Api\UniS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniSA.Web", "UniSA.Web\UniSA.Web.csproj", "{FAD84E68-1B68-42A2-87E8-03F71381099B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniSA.Data", "UniSA.Data\UniSA.Data.csproj", "{31C84106-E7D0-472C-A6C5-4EF14F8BE17E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniSA.Tester", "UniSA.Tester\UniSA.Tester.csproj", "{9B9A98B3-4D6D-4B92-AE98-8A2A545CB91A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{FAD84E68-1B68-42A2-87E8-03F71381099B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAD84E68-1B68-42A2-87E8-03F71381099B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAD84E68-1B68-42A2-87E8-03F71381099B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31C84106-E7D0-472C-A6C5-4EF14F8BE17E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31C84106-E7D0-472C-A6C5-4EF14F8BE17E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31C84106-E7D0-472C-A6C5-4EF14F8BE17E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31C84106-E7D0-472C-A6C5-4EF14F8BE17E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B9A98B3-4D6D-4B92-AE98-8A2A545CB91A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B9A98B3-4D6D-4B92-AE98-8A2A545CB91A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B9A98B3-4D6D-4B92-AE98-8A2A545CB91A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B9A98B3-4D6D-4B92-AE98-8A2A545CB91A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

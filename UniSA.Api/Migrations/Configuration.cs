@@ -29,6 +29,13 @@ namespace UniSA.Api.Migrations
 
         protected override void Seed(UniSA.Api.Data.ApplicationDbContext context)
         {
+            if (System.Diagnostics.Debugger.IsAttached == false)
+            {
+                System.Diagnostics.Debugger.Launch();
+            }
+
+
+
             this.userManager = CreateUserManager(context);
             this.roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
@@ -50,7 +57,7 @@ namespace UniSA.Api.Migrations
 
         private void SeedAdministrators(ApplicationDbContext context)
         {
-            if(context.Administrators.Any()) { return; }
+            if (context.Administrators.Any()) { return; }
 
             //Add Super Administration
             Administrator superAdmin = new Administrator();
@@ -82,12 +89,12 @@ namespace UniSA.Api.Migrations
                 Email = "admin@admin.com",
                 UserName = "admin"
             };
-            password = "admin";
+            password = "adminadmin";
 
             isAdded = this.SeedAdminApplicationUser(adminUser, password);
 
             if (isAdded)
-                superAdmin.ApplicationUserId = adminUser.Id;
+                admin.ApplicationUserId = adminUser.Id;
 
             context.Administrators.Add(admin);
 

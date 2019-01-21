@@ -3,10 +3,10 @@ using Microsoft.Owin.Security.OAuth;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using UniSA.Api.Repos;
-using UniSA.Api.Models.AppClients;
 using Microsoft.Owin.Security;
 using System.Collections.Generic;
 using System.Linq;
+using UniSA.Api.Data;
 
 namespace UniSA.Api.Services
 {
@@ -43,7 +43,7 @@ namespace UniSA.Api.Services
                 return Task.FromResult<object>(null);
             }
 
-            if (client.ApplicationType == Models.AppClients.ApplicationTypes.NativeConfidential)
+            if (client.ApplicationType == 1)    //Models.AppClients.ApplicationTypes.NativeConfidential = 1
             {
                 if (string.IsNullOrWhiteSpace(clientSecret))
                 {

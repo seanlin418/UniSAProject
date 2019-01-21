@@ -6,11 +6,10 @@ using System.Web.Http;
 using UniSA.Api.Repos;
 using UniSA.Api.ViewModels;
 using Microsoft.AspNet.Identity;
-using UniSA.Api.Models.AppClients;
 using System.Threading.Tasks;
 using System.Net.Http;
 using UniSA.Api.Services;
-using System.Data.Entity.Validation;
+using UniSA.Api.Data;
 
 namespace UniSA.Controllers
 {

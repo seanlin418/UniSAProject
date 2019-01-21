@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using UniSA.Api.Data;
-using UniSA.Api.Models.AppClients;
 
 namespace UniSA.Api.Repos
 {

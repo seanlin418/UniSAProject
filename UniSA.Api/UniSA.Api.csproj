@@ -114,6 +114,7 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
@@ -197,6 +198,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\AppClients\Client.cs" />
+    <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectConfig.cs" />
@@ -238,11 +241,17 @@
     <Compile Include="Data\Common\IDeletableEntity.cs" />
     <Compile Include="Data\Infrastructure\IApplicationDBContext.cs" />
     <Compile Include="GlobalConstants.cs" />
+    <Compile Include="Migrations\201901201256186_init.cs" />
+    <Compile Include="Migrations\201901201256186_init.Designer.cs">
+      <DependentUpon>201901201256186_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901201314001_AdminUserAdded.cs" />
+    <Compile Include="Migrations\201901201314001_AdminUserAdded.Designer.cs">
+      <DependentUpon>201901201314001_AdminUserAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AppClients\Client.cs" />
-    <Compile Include="Models\AppClients\RefreshToken.cs" />
+    <Compile Include="Data\AppClients\RefreshToken.cs" />
     <Compile Include="Services\SimpleRefreshTokenProvider.cs" />
-    <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\AuthRepository.cs" />
@@ -385,6 +394,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\" />
     <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
@@ -415,6 +425,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901201256186_init.resx">
+      <DependentUpon>201901201256186_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901201314001_AdminUserAdded.resx">
+      <DependentUpon>201901201314001_AdminUserAdded.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
