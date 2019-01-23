@@ -1,5 +1,3 @@
-F:\Works\UniSAProject\UniSA.Tester\bin\Debug\App_Data\ApplicationDbContext.mdf
-F:\Works\UniSAProject\UniSA.Tester\bin\Debug\App_Data\ApplicationDbContext_log.ldf
 F:\Works\UniSAProject\UniSA.Tester\bin\Debug\UniSA.Tester.exe.config
 F:\Works\UniSAProject\UniSA.Tester\bin\Debug\UniSA.Tester.exe
 F:\Works\UniSAProject\UniSA.Tester\bin\Debug\UniSA.Tester.pdb

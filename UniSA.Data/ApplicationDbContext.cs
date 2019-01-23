@@ -20,6 +20,9 @@ namespace UniSA.Data
             return new ApplicationDbContext();
         }
 
+
+
+
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
 

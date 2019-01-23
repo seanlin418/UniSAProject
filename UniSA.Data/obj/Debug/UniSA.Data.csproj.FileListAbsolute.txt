@@ -14,7 +14,3 @@ F:\Works\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.csproj.CoreCompileInputs.c
 F:\Works\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.csproj.CopyComplete
 F:\Works\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.dll
 F:\Works\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.pdb
-F:\Works\UniSAProject\UniSA.Data\bin\Debug\App_Data\ApplicationDbContext.mdf
-F:\Works\UniSAProject\UniSA.Data\bin\Debug\App_Data\ApplicationDbContext_log.ldf
-F:\Works\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.Migrations.init.resources
-F:\Works\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.csproj.GenerateResource.cache

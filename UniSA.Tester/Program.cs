@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using UniSA.Data;
 
@@ -34,17 +35,12 @@ namespace UniSA.Tester
             string password = "admin1";
 
             var result = SeedAdministrators(user, password);
-
-
         }
 
         public static void SeedRoles()
         {
             if (context.Roles.Any())
-            {
                 return;
-            }
-
 
             if (!context.Roles.Any(w => w.Name == GlobalConstants.SuperAdministratorRoleName))
                 roleManager.Create(new IdentityRole(GlobalConstants.SuperAdministratorRoleName));
@@ -60,10 +56,14 @@ namespace UniSA.Tester
                 roleManager.Create(new IdentityRole(GlobalConstants.StudentRoleName));
 
             context.SaveChanges();
+
         }
 
         public static IdentityResult SeedAdministrators(ApplicationUser user, string password)
         {
+            if (context.Administrators.Any())
+                return null;
+
             IdentityResult result = appManager.Create(user, password);
 
             //Sign role of admin to the application user.

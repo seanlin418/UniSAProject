@@ -79,13 +79,9 @@
     <Compile Include="Common\ApplicationUser.cs" />
     <Compile Include="Common\DeletableEntity.cs" />
     <Compile Include="Common\IDeletableEntity.cs" />
+    <Compile Include="Course.cs" />
     <Compile Include="GlobalConstants.cs" />
     <Compile Include="Infrastructure\IApplicationDBContext.cs" />
-    <Compile Include="Migrations\201901210430042_init.cs" />
-    <Compile Include="Migrations\201901210430042_init.Designer.cs">
-      <DependentUpon>201901210430042_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,18 +101,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ApplicationDbContext.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="App_Data\ApplicationDbContext_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>ApplicationDbContext.mdf</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901210430042_init.resx">
-      <DependentUpon>201901210430042_init.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
