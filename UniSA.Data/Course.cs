@@ -8,19 +8,35 @@ using UniSA.Data.Common;
 
 namespace UniSA.Data
 {
+    public enum Availability { NotAvailable = 0, Semester1 = 1, Semester2 = 2, Summer = 3, Winter = 4}
+    public enum Campus { NotAvailable = 0, Magill, MawsonLakes, AdelaideCE, AdelaideCW, MountGambier }
+    public enum Offering { NotAvailable = 0,  OnCampas, External, Online }
+
+    public class AcademicYear : DeletableEntity
+    {
+        public int Id { get; set; }
+        DateTime StartPeriod { get; set; }
+        DateTime EndPeriod { get; set; }
+
+        public virtual ICollection<Subject> Subjects { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<Teacher> Teachers { get; set; }
+    }
+
     public class Subject : DeletableEntity
     {
         public Subject()
         {
             Courses = new HashSet<Course>();
             Campuses = new HashSet<Campus>();
-            DatesAndTimes = new HashSet<SubjectDatesAndTimesInfo>();
-
-            Teachers = new HashSet<Teacher>();
 
             Prerequisites = new HashSet<Subject>();
             Corequisites = new HashSet<Subject>();
             NonAllowedSubjects = new HashSet<Subject>();
+
+            Teachers = new HashSet<Teacher>();
+            PrincipalCoordinators = new HashSet<Teacher>();
         }
         public int Id { get; set; }
         [Required]
@@ -30,51 +46,24 @@ namespace UniSA.Data
         public string Description { get; set; }
         public virtual ICollection<Campus> Campuses { get; set; }
         public double CreditPoints { get; set; }
-
-        //Eligibility And Requirement
-        public virtual ICollection<Subject> Prerequisites { get; set; }
-        public virtual ICollection<Subject> Corequisites { get; set; }
-        public virtual ICollection<Subject> NonAllowedSubjects { get; set; }
-
-        public virtual ICollection<Course> Courses { get; set; }
-        public virtual ICollection<SubjectDatesAndTimesInfo> DatesAndTimes { get; set; }
-
-        public virtual ICollection<Teacher> Teachers { get; set; }
-    }
-    public enum Availability { NotAvailable = 0, Semester1 = 1, Semester2 = 2, Summer = 3 }
-    public enum Campus { NotAvailable = 0, Magill, MawsonLakes, AdelaideCE, AdelaideCW, MountGambier }
-    public enum Offering { NotAvailable = 0,  OnCampas, External, Online }
-
-    //public class Assignment
-    //{
-    //    public string Id { get; set; }
-    //    public string Description { get; set; }
-
-    //}
-
-    public class SubjectDatesAndTimesInfo : DeletableEntity
-    {
-        public SubjectDatesAndTimesInfo()
-        {
-            PrincipalCoordinators = new HashSet<Teacher>();
-        } 
-        public int Id { get; set; }
         public Availability Availability { get; set; }
         public Offering Offering { get; set; }
         public int TotalHourCommitment { get; set; }
-
         DateTime StartPeriod { get; set; }
         DateTime EndPeriod { get; set; }
         DateTime LastSelfEnrolDate { get; set; }
         DateTime CensusDate { get; set; }
         DateTime LastDateToWithdrawWithoutFail { get; set; }
 
+        //Eligibility And Requirement
+        public virtual ICollection<Subject> Prerequisites { get; set; }
+        public virtual ICollection<Subject> Corequisites { get; set; }
+        public virtual ICollection<Subject> NonAllowedSubjects { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<Teacher> Teachers { get; set; }
         public virtual ICollection<Teacher> PrincipalCoordinators { get; set; }
-
-        public int SubjectId { get; set; }
-        public Subject Subject { get; set; }
+        public virtual ICollection<AcademicYear> AcademicYears { get; set; }
     }
-
 
     public class Course : DeletableEntity
     {
@@ -91,9 +80,12 @@ namespace UniSA.Data
         public string Description { get; set; }
         public double TotalCreditPoints { get; set; }
 
-        public virtual ICollection<Subject> Subjects { get; set; }
+        public int AcademicYearId { get; set; }
+        public AcademicYear AcademicYear { get; set; }
 
+        public virtual ICollection<Subject> Subjects { get; set; }
         public virtual ICollection<Teacher> PrincipalCoordinators { get; set; }
+        public virtual ICollection<AcademicYear> AcademicYears { get; set; }
 
     }
 
@@ -109,12 +101,13 @@ namespace UniSA.Data
 
         public virtual ICollection<Subject> Subjects { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<AcademicYear> AcademicYears { get; set; }
 
         public IEnumerable<Subject> PrincipalCoordinatorOfSubjects
         {
             get
             {
-                var subjects = Subjects.SelectMany(w => w.DatesAndTimes).Where(w => this.Subjects.Any(s => s.Id == w.SubjectId)).Select(w => w.Subject);
+                var subjects = Subjects.Where(w => w.PrincipalCoordinators.Any(s => s.ApplicationUserId == this.ApplicationUserId)).Select(w => w);
                 return subjects;
             }
         }
@@ -123,7 +116,7 @@ namespace UniSA.Data
         {
             get
             {
-                var courses = Courses.Where(w => w.PrincipalCoordinators.Any(s => s.ApplicationUserId == this.ApplicationUserId));
+                var courses = Courses.Where(w => w.PrincipalCoordinators.Any(s => s.ApplicationUserId == this.ApplicationUserId)).Select(w => w);
                 return courses;
             }
         }
@@ -144,6 +137,7 @@ namespace UniSA.Data
 
         public virtual ICollection<Subject> Subjects { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<AcademicYear> AcademicYears { get; set; }
     }
 
 }

@@ -50,7 +50,6 @@ namespace UniSA.Data
         public virtual DbSet<Subject> Subjects { get; set; }
 
         public virtual DbSet<Course> Courses { get; set; }
-        public virtual DbSet<SubjectDatesAndTimesInfo> SubjectDatesAndTimesInfos { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
