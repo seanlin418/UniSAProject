@@ -29,10 +29,10 @@ namespace UniSA.Api.Migrations
 
         protected override void Seed(UniSA.Api.Data.ApplicationDbContext context)
         {
-            if (System.Diagnostics.Debugger.IsAttached == false)
-            {
-                System.Diagnostics.Debugger.Launch();
-            }
+            //if (System.Diagnostics.Debugger.IsAttached == false)
+            //{
+            //    System.Diagnostics.Debugger.Launch();
+            //}
 
 
 

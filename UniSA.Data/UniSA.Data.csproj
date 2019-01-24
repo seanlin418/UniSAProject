@@ -75,13 +75,22 @@
     <Compile Include="AppClients\Client.cs" />
     <Compile Include="AppClients\RefreshToken.cs" />
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="ApplicationUser.cs" />
+    <Compile Include="App_Users\ApplicationUser.cs" />
     <Compile Include="Common\ApplicationUser.cs" />
     <Compile Include="Common\DeletableEntity.cs" />
     <Compile Include="Common\IDeletableEntity.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="GlobalConstants.cs" />
     <Compile Include="Infrastructure\IApplicationDBContext.cs" />
+    <Compile Include="Migrations\201901240317032_init.cs" />
+    <Compile Include="Migrations\201901240317032_init.Designer.cs">
+      <DependentUpon>201901240317032_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901240424332_moreUpdates.cs" />
+    <Compile Include="Migrations\201901240424332_moreUpdates.Designer.cs">
+      <DependentUpon>201901240424332_moreUpdates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +111,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901240317032_init.resx">
+      <DependentUpon>201901240317032_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901240424332_moreUpdates.resx">
+      <DependentUpon>201901240424332_moreUpdates.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

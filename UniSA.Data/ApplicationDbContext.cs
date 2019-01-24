@@ -10,24 +10,14 @@ namespace UniSA.Data
     public partial class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection")
         {
             
         }
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
-
-
-
-
-        public virtual DbSet<Client> Clients { get; set; }
-        public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
-
-        public DbSet<Administrator> Administrators { get; set; }
-
         public new void SaveChanges()
         {
             try
@@ -52,5 +42,58 @@ namespace UniSA.Data
             }
         }
 
+
+        public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
+        public virtual DbSet<Administrator> Administrators { get; set; }
+
+        public virtual DbSet<Subject> Subjects { get; set; }
+
+        public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<SubjectDatesAndTimesInfo> SubjectDatesAndTimesInfos { get; set; }
+        public virtual DbSet<Teacher> Teachers { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Subject>()
+                .HasMany(t => t.Prerequisites)
+                .WithMany()
+                .Map(m =>
+                {
+                    m.ToTable("SubjectPrerequisite");
+                    m.MapLeftKey("Id");
+                    m.MapRightKey("PrerequisitesId");
+                });
+            modelBuilder.Entity<Subject>()
+                .HasMany(t => t.Corequisites)
+                .WithMany()
+                .Map(m =>
+                {
+                    m.ToTable("SubjectCorequisite");
+                    m.MapLeftKey("Id");
+                    m.MapRightKey("CorequisitesId");
+                });
+            modelBuilder.Entity<Subject>()
+                .HasMany(t => t.NonAllowedSubjects)
+                .WithMany()
+                .Map(m =>
+                {
+                    m.ToTable("SubjectNonAllowedSubjects");
+                    m.MapLeftKey("Id");
+                    m.MapRightKey("NonAllowedSubjectsId");
+                });
+
+            modelBuilder.Entity<Course>()
+                .HasMany(t => t.Subjects)
+                .WithMany(t => t.Courses)
+                .Map(m =>
+                {
+                    m.ToTable("CourseSubject");
+                    m.MapLeftKey("CourseId");
+                    m.MapRightKey("SubjectId");
+                });
+        }
     }
 }
