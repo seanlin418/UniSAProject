@@ -4,7 +4,8 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using UniSA.Api.Data;
+using UniSA.Data;
+using UniSA.Data.AppClients;
 
 namespace UniSA.Api.Repos
 {

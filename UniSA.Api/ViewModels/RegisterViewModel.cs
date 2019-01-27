@@ -39,6 +39,8 @@ namespace UniSA.Api.ViewModels
         [RegularExpression(@"^[a-zA-Z0-9'._%+-]+@[a-zA-Z0-9-][a-zA-Z0-9.-]*\.[a-zA-Z]{2,9}$", ErrorMessage = "Invalid email address.")]
         public string Email { get; set; }
 
+        public List<string> Roles { get; set; } 
+
         [DataType(DataType.Upload)]
         public HttpPostedFileBase ImageUpload { get; set; }
         public string ImageUrl { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using UniSA.Api.Repos;
 using UniSA.Api.Services;
-using UniSA.Api.Data;
+using UniSA.Data.AppClients;
 
 namespace UniSA.Services
 {

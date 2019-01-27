@@ -6,10 +6,10 @@ namespace UniSA.Api.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using UniSA.Api.Data;
-    using UniSA.Api.Data.Common;
+    using UniSA.Data;
+    using UniSA.Data.Common;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<UniSA.Api.Data.ApplicationDbContext>, IDisposable
+    internal sealed class Configuration : DbMigrationsConfiguration<UniSA.Data.ApplicationDbContext>, IDisposable
     {
         private UserManager<ApplicationUser> userManager;
 
@@ -27,7 +27,7 @@ namespace UniSA.Api.Migrations
             GC.SuppressFinalize(this);
         }
 
-        protected override void Seed(UniSA.Api.Data.ApplicationDbContext context)
+        protected override void Seed(UniSA.Data.ApplicationDbContext context)
         {
             //if (System.Diagnostics.Debugger.IsAttached == false)
             //{
@@ -132,9 +132,9 @@ namespace UniSA.Api.Migrations
 
 
 
-        private ApplicationManager CreateUserManager(ApplicationDbContext context)
+        private ApplicationUserManager CreateUserManager(ApplicationDbContext context)
         {
-            var userManager = new ApplicationManager(new UserStore<ApplicationUser>(context));
+            var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
 
             //Configure application manager here.
 

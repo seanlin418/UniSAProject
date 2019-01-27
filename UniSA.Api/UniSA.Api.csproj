@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UniSA</RootNamespace>
     <AssemblyName>UniSA</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -198,8 +198,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\AppClients\Client.cs" />
-    <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectConfig.cs" />
@@ -234,12 +232,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Data\Administrator.cs" />
-    <Compile Include="Data\Infrastructure\ApplicationManager.cs" />
-    <Compile Include="Data\Common\ApplicationUser.cs" />
-    <Compile Include="Data\Common\DeletableEntity.cs" />
-    <Compile Include="Data\Common\IDeletableEntity.cs" />
-    <Compile Include="Data\Infrastructure\IApplicationDBContext.cs" />
+    <Compile Include="Controllers\ApiBaseController.cs" />
     <Compile Include="GlobalConstants.cs" />
     <Compile Include="Migrations\201901201256186_init.cs" />
     <Compile Include="Migrations\201901201256186_init.Designer.cs">
@@ -250,13 +243,14 @@
       <DependentUpon>201901201314001_AdminUserAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Data\AppClients\RefreshToken.cs" />
+    <Compile Include="Repos\IRoleRepository.cs" />
+    <Compile Include="Repos\RoleRepository.cs" />
     <Compile Include="Services\SimpleRefreshTokenProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repos\AuthRepository.cs" />
+    <Compile Include="Repos\UserRepository.cs" />
     <Compile Include="Repos\ClientRepository.cs" />
-    <Compile Include="Repos\IAuthRepository.cs" />
+    <Compile Include="Repos\IUserRepository.cs" />
     <Compile Include="Repos\IClientRepository.cs" />
     <Compile Include="Services\HelperService.cs" />
     <Compile Include="Services\SimpleAuthorizationServerProvider.cs" />
@@ -396,6 +390,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="Views\ApiBase\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -433,6 +428,12 @@
     <EmbeddedResource Include="Migrations\201901201314001_AdminUserAdded.resx">
       <DependentUpon>201901201314001_AdminUserAdded.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UniSA.Data\UniSA.Data.csproj">
+      <Project>{31c84106-e7d0-472c-a6c5-4ef14f8be17e}</Project>
+      <Name>UniSA.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
-using UniSA.Api.Data;
+using UniSA.Data.AppClients;
 
 namespace UniSA.Api.Repos
 {

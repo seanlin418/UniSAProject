@@ -7,6 +7,9 @@ using Microsoft.Owin.Security.OAuth;
 using UniSA.Api.Services;
 using Microsoft.Owin;
 using UniSA.Services;
+using UniSA.Data;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 [assembly: OwinStartup(typeof(UniSA.Api.Startup))]
 
@@ -18,6 +21,11 @@ namespace UniSA.Api
 
         public void Configuration(IAppBuilder app)
         {
+            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+
+            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
+
             //OWIN Middleware - Configure WebApi
             ConfigureWebApi(app);
         }

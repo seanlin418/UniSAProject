@@ -6,7 +6,7 @@ using UniSA.Api.Repos;
 using Microsoft.Owin.Security;
 using System.Collections.Generic;
 using System.Linq;
-using UniSA.Api.Data;
+using UniSA.Data.AppClients;
 
 namespace UniSA.Api.Services
 {
@@ -82,7 +82,7 @@ namespace UniSA.Api.Services
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
 
-            using (AuthRepository _repo = new AuthRepository())
+            using (UserRepository _repo = new UserRepository())
             {
                 IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
 

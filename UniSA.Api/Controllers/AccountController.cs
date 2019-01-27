@@ -9,71 +9,42 @@ using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using System.Net.Http;
 using UniSA.Api.Services;
-using UniSA.Api.Data;
+using UniSA.Data;
+using UniSA.Data.AppClients;
 
-namespace UniSA.Controllers
+namespace UniSA.Api.Controller
 {
     [RoutePrefix("api/Account")]
-    public class AccountController : ApiController
+    public class AccountController : BaseApiController
     {
-        private IAuthRepository _repo;
-        public AccountController(IAuthRepository repo)
+        private IUserRepository _repo;
+        public AccountController(IUserRepository repo)
         {
             this._repo = repo;
         }
 
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<HttpResponseMessage> Register(HttpRequestMessage request, RegisterViewModel registerViewModel)
+        public async Task<IHttpActionResult> Register(RegisterViewModel registerViewModel)
         {
             if (ModelState.Values.Count() > 0 )
             {
-                return  request.CreateResponse(System.Net.HttpStatusCode.BadRequest,
-                    ModelState.Values.SelectMany(w => w.Errors.Select(e => e.ErrorMessage)));
+                return BadRequest(ModelState);
             }
 
             IdentityResult result = await _repo.RegisterUser(registerViewModel);
 
-            HttpResponseMessage errorResultMessage = GetErrorResult(result, request);
+            var errorResultMessage = this.GetErrorResult(result);
 
             if (errorResultMessage != null)
             {
                 return errorResultMessage;
             }
 
-            return request.CreateResponse(System.Net.HttpStatusCode.OK);
+            return Ok();
         }
 
-        //Helper method used to validate "userViewModel" and return corresponding HTTP status code.
-        private HttpResponseMessage GetErrorResult(IdentityResult result, HttpRequestMessage request)
-        {
-            if (result == null)
-            {
-                return request.CreateResponse(System.Net.HttpStatusCode.InternalServerError);
-            }
-
-            if (!result.Succeeded)
-            {
-                if (result.Errors != null)
-                {
-                    foreach (string error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error);
-                    }
-                }
-
-                if (ModelState.IsValid)
-                {
-                    // No ModelState errors are available to send, so just return an empty BadRequest.
-                    return request.CreateResponse(System.Net.HttpStatusCode.BadRequest);
-                }
-
-                return request.CreateResponse(System.Net.HttpStatusCode.BadRequest,
-                    ModelState.Values.SelectMany(w => w.Errors.Select(e => e.ErrorMessage)));
-            }
-
-            return null;
-        }
+        
 
         //for debugging purpose..
         [AllowAnonymous]
