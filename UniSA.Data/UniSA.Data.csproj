@@ -105,9 +105,9 @@
     <Compile Include="Course.cs" />
     <Compile Include="GlobalConstants.cs" />
     <Compile Include="IApplicationDBContext.cs" />
-    <Compile Include="Migrations\201901281202256_init.cs" />
-    <Compile Include="Migrations\201901281202256_init.Designer.cs">
-      <DependentUpon>201901281202256_init.cs</DependentUpon>
+    <Compile Include="Migrations\201901290619540_init.cs" />
+    <Compile Include="Migrations\201901290619540_init.Designer.cs">
+      <DependentUpon>201901290619540_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,8 +132,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901281202256_init.resx">
-      <DependentUpon>201901281202256_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901290619540_init.resx">
+      <DependentUpon>201901290619540_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -13,7 +13,7 @@ namespace UniSA.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201901281202256_init"; }
+            get { return "201901290619540_init"; }
         }
         
         string IMigrationMetadata.Source

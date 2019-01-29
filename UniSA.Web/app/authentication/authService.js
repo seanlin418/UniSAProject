@@ -98,6 +98,12 @@ myApp.factory("authService", ["$http", "$q", "localStorageService", "UniSAApiSet
     var _refreshToken = function () {
         var authData = localStorageService.get('authorizationData');
 
+
+        //SeanLin: The whole reason of using q service is to reject the ErrorStatusCode = 400,401...
+        //Otherwise, error code will not be rejected and will call onSuccess function,
+        //REGARDLESS whether there is interceptor service to handle the errorResponse implementation!
+        var _deferred = $q.defer();
+
         if (authData) {
 
             //if (authData.useRefreshTokens) {
@@ -111,13 +117,15 @@ myApp.factory("authService", ["$http", "$q", "localStorageService", "UniSAApiSet
 
                     localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, refreshToken: response.refresh_token, useRefreshTokens: true });
 
-                    deferred.resolve(response);
+                    _deferred.resolve(response);
 
                 }, function (err, status) {
                     _logout();
-                    return err;
+                    _deferred.reject(err);
                 });
             //}
+
+            return _deferred.promise;
         }
     };
 

@@ -6,12 +6,12 @@
                 <div style="margin-left:15px">
                     <div class="form-group row">
                         <label for="emailAddress">Account Name / Email</label>
-                        <input type="text" class="form-control" id="emailOrUserNameId" name="emailOrUserName" ng-model="loginData.emailOrUserName" placeholder="Account Name / Email" required>
+                        <input type="text" class="form-control" id="emailOrUserNameId" name="emailOrUserName" ng-model="inputData.emailOrUserName" placeholder="Account Name / Email" required>
                         <small id="passwordConfirmHelp" style="color: red;" ng-show="loginForm.emailOrUserName.$error.required && loginForm.emailOrUserName.$dirty">Please enter an account name or an email address.</small>
                     </div>
                     <div class="form-group row">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="passwordId" name="password" ng-model="loginData.password" placeholder="Password" required>
+                        <input type="password" class="form-control" id="passwordId" name="password" ng-model="inputData.password" placeholder="Password" required>
                         <small id="passwordHelp" style="color: red;" ng-show="loginForm.password.$error.required && loginForm.password.$dirty">Please enter a password.</small>
                     </div>
                     <div class="form-group row">
@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <button type="submit" class="btn btn-outline-primary" ng-disabled="loginForm.$invalid && !refreshTokenByPass" ng-click="login(loginData)">SignUp</button>
+                        <button type="submit" class="btn btn-outline-primary" ng-disabled="loginForm.$invalid && !refreshTokenByPass" ng-click="login()">SignUp</button>
                     </div>
 
                     <div class="form-group row">

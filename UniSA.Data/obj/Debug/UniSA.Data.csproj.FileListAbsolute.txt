@@ -38,8 +38,6 @@ C:\Work\UniSAProject\UniSA.Data\bin\Debug\Microsoft.Owin.Security.xml
 C:\Work\UniSAProject\UniSA.Data\bin\Debug\Microsoft.Owin.Security.Cookies.xml
 C:\Work\UniSAProject\UniSA.Data\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 C:\Work\UniSAProject\UniSA.Data\bin\Debug\Newtonsoft.Json.xml
-C:\Work\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.Migrations.init.resources
-C:\Work\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.csproj.GenerateResource.cache
 C:\Work\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.csproj.CoreCompileInputs.cache
 C:\Work\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.csproj.CopyComplete
 C:\Work\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.dll
@@ -59,3 +57,6 @@ F:\Works\UniSAProject\UniSA.Data\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 F:\Works\UniSAProject\UniSA.Data\bin\Debug\Newtonsoft.Json.xml
 F:\Works\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.Migrations.init.resources
 F:\Works\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.csproj.GenerateResource.cache
+C:\Work\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.csprojAssemblyReference.cache
+C:\Work\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.Migrations.init.resources
+C:\Work\UniSAProject\UniSA.Data\obj\Debug\UniSA.Data.csproj.GenerateResource.cache
