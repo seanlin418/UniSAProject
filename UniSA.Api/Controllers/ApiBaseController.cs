@@ -5,13 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using UniSA.Api.Repos;
 
 namespace UniSA.Api.Controller
 {
     public class BaseApiController : ApiController
     {
         //Helper method used to validate "userViewModel" and return corresponding HTTP status code.
-        protected IHttpActionResult GetErrorResult(IdentityResult result)
+        protected IHttpActionResult GetErrorResult(OpResult result)
         {
             if (result == null)
             {
@@ -20,11 +21,11 @@ namespace UniSA.Api.Controller
 
             if (!result.Succeeded)
             {
-                if (result.Errors != null)
+                if (result.GetAggregatedErrors() != null)
                 {
-                    foreach (string error in result.Errors)
+                    foreach (string error in result.GetAggregatedErrors())
                     {
-                        ModelState.AddModelError("", error);
+                        ModelState.AddModelError("innerExceptions", error);
                     }
                 }
 

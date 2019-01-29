@@ -93,20 +93,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administrator.cs" />
-    <Compile Include="AppClients\Client.cs" />
-    <Compile Include="AppClients\RefreshToken.cs" />
+    <Compile Include="Helpers\Hasher.cs" />
+    <Compile Include="Infrastructure\AppClients\Client.cs" />
+    <Compile Include="Infrastructure\AppClients\RefreshToken.cs" />
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="App_Users\ApplicationManager.cs" />
-    <Compile Include="App_Users\ApplicationRoleManager.cs" />
-    <Compile Include="App_Users\ApplicationUser.cs" />
+    <Compile Include="Infrastructure\App_Users\ApplicationManager.cs" />
+    <Compile Include="Infrastructure\App_Users\ApplicationRoleManager.cs" />
+    <Compile Include="Infrastructure\App_Users\ApplicationUser.cs" />
     <Compile Include="Common\DeletableEntity.cs" />
     <Compile Include="Common\IDeletableEntity.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="GlobalConstants.cs" />
-    <Compile Include="Infrastructure\IApplicationDBContext.cs" />
-    <Compile Include="Migrations\201901240708290_init.cs" />
-    <Compile Include="Migrations\201901240708290_init.Designer.cs">
-      <DependentUpon>201901240708290_init.cs</DependentUpon>
+    <Compile Include="IApplicationDBContext.cs" />
+    <Compile Include="Migrations\201901281202256_init.cs" />
+    <Compile Include="Migrations\201901281202256_init.Designer.cs">
+      <DependentUpon>201901281202256_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,8 +132,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901240708290_init.resx">
-      <DependentUpon>201901240708290_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901281202256_init.resx">
+      <DependentUpon>201901281202256_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

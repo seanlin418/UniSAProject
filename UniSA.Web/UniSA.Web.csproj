@@ -80,6 +80,7 @@
     <Content Include="app\authentication\signup.html" />
     <Content Include="app\home\home-controller.js" />
     <Content Include="app\home\home.html" />
+    <Content Include="app\index-controller.js" />
     <Content Include="app\index.html" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />

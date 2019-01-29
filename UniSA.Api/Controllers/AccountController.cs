@@ -11,28 +11,31 @@ using System.Net.Http;
 using UniSA.Api.Services;
 using UniSA.Data;
 using UniSA.Data.AppClients;
+using AutoMapper;
 
 namespace UniSA.Api.Controller
 {
     [RoutePrefix("api/Account")]
     public class AccountController : BaseApiController
     {
-        private IUserRepository _repo;
-        public AccountController(IUserRepository repo)
+        private IAuthService  _AuthService = null;
+        public AccountController(IAuthService authService)
         {
-            this._repo = repo;
+            this._AuthService = authService;
         }
 
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<IHttpActionResult> Register(RegisterViewModel registerViewModel)
+        public async Task<IHttpActionResult> Register(RegisterViewModel registerVm)
         {
             if (ModelState.Values.Count() > 0 )
             {
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await _repo.RegisterUser(registerViewModel);
+            ApplicationUser newUser = Mapper.Map<RegisterViewModel, ApplicationUser>(registerVm);
+
+            OpResult result = await _AuthService.RegisterUser(newUser, registerVm.Password, registerVm.Roles);
 
             var errorResultMessage = this.GetErrorResult(result);
 
@@ -43,8 +46,6 @@ namespace UniSA.Api.Controller
 
             return Ok();
         }
-
-        
 
         //for debugging purpose..
         [AllowAnonymous]

@@ -3,57 +3,56 @@
         <form name="registerForm" novalidate>
             <fieldset>
                 <legend>Sign Up</legend>
+                <div style="margin-left:15px">
+                    <div class="form-group row">
+                        <label for="firstName">First Name</label>
+                        <input type="text" class="form-control" id="firstNameId" name="firstName" ng-model="registration.firstName" placeholder="First Name" requi>
+                        <small id="userNameHelp" style="color: red;" ng-show="registerForm.firstName.$error.required && registerForm.firstName.$dirty">Please enter a first name.</small>
+                    </div>
 
-                <div class="form-group row">
-                    <label for="firstName">First Name</label>
-                    <input type="text" class="form-control" id="firstNameId" name="firstName" ng-model="registration.firstName" placeholder="First Name" requi>
-                    <small id="userNameHelp" style="color: red;" ng-show="registerForm.firstName.$error.required && registerForm.firstName.$dirty">Please enter a first name.</small>
-                </div>
+                    <div class="form-group row">
+                        <label for="userName">Last Name</label>
+                        <input type="text" class="form-control" id="lastNameId" name="lastName" ng-model="registration.lastName" placeholder="Last Name" required>
+                        <small id="userNameHelp" style="color: red;" ng-show="registerForm.lastName.$error.required && registerForm.lastName.$dirty">Please enter a last name.</small>
+                    </div>
 
-                <div class="form-group row">
-                    <label for="userName">Last Name</label>
-                    <input type="text" class="form-control" id="lastNameId" name="lastName" ng-model="registration.lastName" placeholder="Last Name" required>
-                    <small id="userNameHelp" style="color: red;" ng-show="registerForm.lastName.$error.required && registerForm.lastName.$dirty">Please enter a last name.</small>
-                </div>
+                    <div class="form-group row">
+                        <label for="userName">User Name</label>
+                        <input type="text" class="form-control" id="userNameId" name="userName" ng-model="registration.userName" placeholder="User Name" required>
+                        <small id="userNameHelp" style="color: red;" ng-show="registerForm.userName.$error.required && registerForm.userName.$dirty">Please enter a user name.</small>
+                    </div>
+                    <div class="form-group row">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="passwordId" name="password" ng-model="registration.password" placeholder="Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$">
+                        <small id="passwordHelp" style="color: red;" ng-show="registerForm.password.$error.required && registerForm.password.$dirty">Please enter a password.</small>
+                        <small id="passwordHelp" style="color: red;" ng-show="registerForm.password.$error.pattern && registerForm.password.$dirty">Minimum 8 and maximum 10 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.</small>
+                    </div>
+                    <div class="form-group row">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPasswordId" name="confirmPassword" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$"
+                               ng-model="registration.confirmPassword" placeholder="Confirm Password" required
+                               compare-to="registration.password" />
+                        <small id="passwordConfirmHelp" style="color: red;" ng-show="registerForm.confirmPassword.$error.required && registerForm.confirmPassword.$dirty">Please confirm the password.</small>
+                        <small id="passwordConfirmHelp" style="color: red;" ng-show="registerForm.confirmPassword.$error.compareTo && registerForm.confirmPassword.$dirty">Password mismatched, must match the previous entry.</small>
+                        <small id="passwordHelp" style="color: red;" ng-show="registerForm.confirmPassword.$error.pattern && registerForm.password.$dirty">Minimum 8 and maximum 10 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.</small>
+                    </div>
 
-                <div class="form-group row">
-                    <label for="userName">User Name</label>
-                    <input type="text" class="form-control" id="userNameId" name="userName" ng-model="registration.userName" placeholder="User Name" required>
-                    <small id="userNameHelp" style="color: red;" ng-show="registerForm.userName.$error.required && registerForm.userName.$dirty">Please enter a user name.</small>
-                </div>
-                <div class="form-group row">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="passwordId" name="password" ng-model="registration.password" placeholder="Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$" >
-                    <small id="passwordHelp" style="color: red;" ng-show="registerForm.password.$error.required && registerForm.password.$dirty">Please enter a password.</small>
-                    <small id="passwordHelp" style="color: red;" ng-show="registerForm.password.$error.pattern && registerForm.password.$dirty">Minimum 8 and maximum 10 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.</small>
-                </div>
-                <div class="form-group row">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmPasswordId" name="confirmPassword" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$"
-                           ng-model="registration.confirmPassword" placeholder="Confirm Password" required
-                           compare-to="registration.password" />
-                    <small id="passwordConfirmHelp" style="color: red;" ng-show="registerForm.confirmPassword.$error.required && registerForm.confirmPassword.$dirty">Please confirm the password.</small>
-                    <small id="passwordConfirmHelp" style="color: red;" ng-show="registerForm.confirmPassword.$error.compareTo && registerForm.confirmPassword.$dirty">Password mismatched, must match the previous entry.</small>
-                    <small id="passwordHelp" style="color: red;" ng-show="registerForm.confirmPassword.$error.pattern && registerForm.password.$dirty">Minimum 8 and maximum 10 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.</small>
-                </div>
+                    <div class="form-group row">
+                        <label for="emailAddress">Email address</label>
+                        <input type="text" class="form-control" id="emailId" name="email" aria-describedby="emailHelp" ng-model="registration.email" placeholder="Email" required ng-pattern="/^[a-zA-Z0-9'._%+-]+@[a-zA-Z0-9-][a-zA-Z0-9.-]*\.[a-zA-Z]{2,9}$/">
+                        <small id="passwordConfirmHelp" style="color: red;" ng-show="registerForm.email.$error.required && registerForm.email.$dirty">Please enter an email address.</small>
+                        <small id="passwordConfirmHelp" style="color: red;" ng-show="registerForm.email.$error.pattern && registerForm.email.$dirty">Invalid email address.</small>
+                    </div>
 
-                <div class="form-group row">
-                    <label for="emailAddress">Email address</label>
-                    <input type="text" class="form-control" id="emailId" name="email" aria-describedby="emailHelp" ng-model="registration.email" placeholder="Email" required ng-pattern="/^[a-zA-Z0-9'._%+-]+@[a-zA-Z0-9-][a-zA-Z0-9.-]*\.[a-zA-Z]{2,9}$/">
-                    <small id="passwordConfirmHelp" style="color: red;" ng-show="registerForm.email.$error.required && registerForm.email.$dirty">Please enter an email address.</small>
-                    <small id="passwordConfirmHelp" style="color: red;" ng-show="registerForm.email.$error.pattern && registerForm.email.$dirty">Invalid email address.</small>
-                </div>
+                    <div class="form-group row">
+                        <button type="submit" class="btn btn-outline-primary" ng-disabled="registerForm.$invalid" ng-click="signUp(registration)">SignUp</button>
+                        <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                    </div>
 
-                <div class="form-group row">
-                    <button type="submit" class="btn btn-outline-primary" ng-disabled="registerForm.$invalid" ng-click="signUp(registration)">SignUp</button>
-                    <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                    <div class="form-group row">
+                        <div style="color:red;" ng-show="errors.length > 0" ng-repeat="error in errors">{{error}}</div>
+                    </div>
                 </div>
-                
-                <div class="form-group row">
-                    <div style="color:red;" ng-show="errors.length > 0" ng-repeat="error in errors">{{error}}</div>
-                </div>
-                
-
             </fieldset>
         </form>
     </div>

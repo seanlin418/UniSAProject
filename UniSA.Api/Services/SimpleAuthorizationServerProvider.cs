@@ -7,6 +7,7 @@ using Microsoft.Owin.Security;
 using System.Collections.Generic;
 using System.Linq;
 using UniSA.Data.AppClients;
+using System;
 
 namespace UniSA.Api.Services
 {
@@ -32,9 +33,9 @@ namespace UniSA.Api.Services
                 return Task.FromResult<object>(null);
             }
 
-            using (ClientRepository _repo = new ClientRepository())
+            using (ClientRepository repo = new ClientRepository())
             {
-                client = _repo.FindClient(context.ClientId);
+                client = repo.FindClient(context.ClientId);
             }
 
             if (client == null)
@@ -43,7 +44,7 @@ namespace UniSA.Api.Services
                 return Task.FromResult<object>(null);
             }
 
-            if (client.ApplicationType == 1)    //Models.AppClients.ApplicationTypes.NativeConfidential = 1
+            if (client.ApplicationType == ApplicationType.NativeConfidential)    //Models.AppClients.ApplicationTypes.NativeConfidential = 1
             {
                 if (string.IsNullOrWhiteSpace(clientSecret))
                 {
@@ -52,7 +53,7 @@ namespace UniSA.Api.Services
                 }
                 else
                 {
-                    if (client.Secret != HelperService.GetHash(clientSecret))
+                    if (client.Secret != Helpers.GetHash(clientSecret))
                     {
                         context.SetError("invalid_clientId", "Client secret is invalid.");
                         return Task.FromResult<object>(null);
@@ -82,9 +83,18 @@ namespace UniSA.Api.Services
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
 
-            using (UserRepository _repo = new UserRepository())
+            string userName = context.UserName;
+
+            using (UserRepository userRepo = new UserRepository())
             {
-                IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
+                IdentityUser user = null;
+                if (context.UserName == null || context.UserName == "")
+                {
+                    user = await userRepo.FindByEmailAsync(context.Scope[0]);
+                    if(user != null) userName = user.UserName;
+                }
+
+                user = await userRepo.FindUser(userName, context.Password);
 
                 if (user == null)
                 {
@@ -94,9 +104,9 @@ namespace UniSA.Api.Services
             }
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+            identity.AddClaim(new Claim(ClaimTypes.Name, userName));
             identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
-            identity.AddClaim(new Claim("sub", context.UserName));
+            identity.AddClaim(new Claim("sub", userName));
 
             var props = new AuthenticationProperties(new Dictionary<string, string>
                 {
@@ -104,7 +114,7 @@ namespace UniSA.Api.Services
                         "as:client_id", (context.ClientId == null) ? string.Empty : context.ClientId
                     },
                     {
-                        "userName", context.UserName
+                        "userName", userName
                     }
                 });
 

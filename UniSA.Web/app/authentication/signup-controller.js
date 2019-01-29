@@ -1,7 +1,7 @@
 ﻿'use strict'
 
 myApp.controller('signUpController', ["$http", "$scope", "$timeout", "$location", "authService", function ($http, $scope, $timeout, $location, authService) {
-    
+
     $scope.signUp = function (registration) {
 
         $scope.errors = [];
@@ -11,7 +11,11 @@ myApp.controller('signUpController', ["$http", "$scope", "$timeout", "$location"
                 startTimer();
 
             }, function (response) {
-                $scope.errors = response.data;
+                if (response.data.ModelState != null) {
+                    if (response.data.ModelState["innerExceptions"].length != 0) {
+                        $scope.errors = response.data.ModelState["innerExceptions"];
+                    };
+                };
             });
     }
 

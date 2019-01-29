@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace UniSA.Api.Services
 {
-    public static class HelperService
+    public static class Helpers
     {
         public static string GetHash(string input)
         {

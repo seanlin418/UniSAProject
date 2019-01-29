@@ -21,10 +21,15 @@ namespace UniSA.Api
 
         public void Configuration(IAppBuilder app)
         {
+
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
 
             app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
+
+
+            //Configure auto map facility
+            AutoMapperConfiguration.Configure();
 
             //OWIN Middleware - Configure WebApi
             ConfigureWebApi(app);
@@ -39,7 +44,7 @@ namespace UniSA.Api
                 AllowInsecureHttp = true,
                 ApplicationCanDisplayErrors = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
+                AccessTokenExpireTimeSpan = TimeSpan.FromSeconds(5),
                 Provider = new SimpleAuthorizationServerProvider(),
                 RefreshTokenProvider = new SimpleRefreshTokenProvider()
             };

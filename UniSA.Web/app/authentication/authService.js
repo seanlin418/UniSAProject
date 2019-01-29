@@ -29,7 +29,7 @@ myApp.factory("authService", ["$http", "$q", "localStorageService", "UniSAApiSet
         //    dataString = dataString + "&client_id=" + UniSAApiSettings.clientId;
         //}
 
-        dataString = dataString + "&client_id=" + UniSAApiSettings.clientId;
+        dataString = dataString + "&client_id=" + UniSAApiSettings.clientId + "&Scope=" + loginData.email;
 
         //SeanLin: The whole reason of using q service is to reject the ErrorStatusCode = 400,401...
         //Otherwise, error code will not be rejected and will call onSuccess function,
@@ -39,14 +39,9 @@ myApp.factory("authService", ["$http", "$q", "localStorageService", "UniSAApiSet
         $http.post(serviceBase + 'token', dataString, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
             .then(function (response) {
 
-                if (loginData.useRefreshTokens) {
-                    localStorageService.set('authorizationData', { token: response.data.access_token, userName: loginData.userName, refreshToken: response.data.refresh_token, useRefreshTokens: true });
-                }
-                else {
-                    localStorageService.set('authorizationData', { token: response.data.access_token, userName: loginData.userName, refreshToken: "", useRefreshTokens: false });
-                }
+                localStorageService.set('authorizationData', { token: response.data.access_token, userName: response.data.userName, refreshToken: response.data.refresh_token, useRefreshTokens: true });
                 _authentication.isAuth = true;
-                _authentication.userName = loginData.userName;
+                _authentication.userName = response.data.userName;
                 _authentication.useRefreshTokens = loginData.useRefreshTokens;
 
                 _deferred.resolve(response); 
@@ -59,8 +54,10 @@ myApp.factory("authService", ["$http", "$q", "localStorageService", "UniSAApiSet
         return _deferred.promise;
     }
 
-    var _logout = function () {
-        localStorageService.remove('authorisationData');
+    var _logout = function (keepData = false) {
+
+        if (!keepData)
+            localStorageService.remove('authorizationData');
 
         _authentication.isAuth = false;
         _authentication.userName = "";
@@ -92,7 +89,7 @@ myApp.factory("authService", ["$http", "$q", "localStorageService", "UniSAApiSet
                 return response;
 
             }, function (err, status) {
-                _logOut();
+                _logout();
                 return err;
             });
 
@@ -103,24 +100,24 @@ myApp.factory("authService", ["$http", "$q", "localStorageService", "UniSAApiSet
 
         if (authData) {
 
-            if (authData.useRefreshTokens) {
+            //if (authData.useRefreshTokens) {
 
-                var data = "grant_type=refresh_token&refresh_token=" + authData.refreshToken + "&client_id=" + UniSAApiSettings.clientId;
+            var data = "grant_type=refresh_token&refresh_token=" + authData.refreshToken + "&client_id=" + UniSAApiSettings.clientId;
 
-                localStorageService.remove('authorizationData');
+            localStorageService.remove('authorizationData');
 
-                $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-                    .then(function (response) {
+            $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+                .then(function (response) {
 
-                        localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, refreshToken: response.refresh_token, useRefreshTokens: true });
+                    localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, refreshToken: response.refresh_token, useRefreshTokens: true });
 
-                        deferred.resolve(response);
+                    deferred.resolve(response);
 
-                    }, function (err, status) {
-                        _logOut();
-                        return err;
-                    });
-            }
+                }, function (err, status) {
+                    _logout();
+                    return err;
+                });
+            //}
         }
     };
 

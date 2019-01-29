@@ -1,42 +1,36 @@
 ﻿<div ng-controller="loginController">
     <div class="container">
-        <form>
+        <form name="loginForm" style="margin-top:20px"  novalidate>
             <fieldset>
-                <legend>User Login</legend>
-                <div class="form-group row">
-                    <label for="userName">User Name</label>
-                    <input type="text" class="form-control" id="userName" ng-model="user.userName" placeholder="Enter User Name">
-                    <!--<small id="emailHelp" class="form-text text-muted">Please enter your user name.</small>-->
-                </div>
-                <div class="form-group row">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" ng-model="user.password" placeholder="Password">
-                    <!--<small id="emailHelp" class="form-text text-muted">Please enter your user name.</small>-->
-                </div>
-                <!--<div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="useRefreshTokensCheckBox" ng-model="user.useRefreshTokens">
-                        <label class="custom-control-label" for="customCheck1">Use Refresh Tokens</label>
+                <legend>Login</legend>
+                <div style="margin-left:15px">
+                    <div class="form-group row">
+                        <label for="emailAddress">Account Name / Email</label>
+                        <input type="text" class="form-control" id="emailOrUserNameId" name="emailOrUserName" ng-model="loginData.emailOrUserName" placeholder="Account Name / Email" required>
+                        <small id="passwordConfirmHelp" style="color: red;" ng-show="loginForm.emailOrUserName.$error.required && loginForm.emailOrUserName.$dirty">Please enter an account name or an email address.</small>
                     </div>
-                </div>-->
-
-                <div class="form-group row">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1" ng-model="user.useRefreshTokens">
-                        <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+                    <div class="form-group row">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="passwordId" name="password" ng-model="loginData.password" placeholder="Password" required>
+                        <small id="passwordHelp" style="color: red;" ng-show="loginForm.password.$error.required && loginForm.password.$dirty">Please enter a password.</small>
+                    </div>
+                    <div class="form-group row">
+                        <p>No account?<a href="#/signup"><font color="dodgerblue"><strong>   Create one</strong></font></a>.</p>
                     </div>
 
-                </div>
+                    <div class="form-group row">
+                        <button type="submit" class="btn btn-outline-primary" ng-disabled="loginForm.$invalid && !refreshTokenByPass" ng-click="login(loginData)">SignUp</button>
+                    </div>
 
-                <div class="form-group row">
-                    <p class="text-danger">{{message}}</p>
-                </div>
-
-                <div class="form-group row">
-                    <button type="submit" class="btn btn-outline-primary" ng-click="login(user)">Login</button>
-                    <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                    <div class="form-group row">
+                        <div style="color:red;">{{message}}</div>
+                    </div>
                 </div>
             </fieldset>
         </form>
+        <div>
+            <button type="submit" class="btn btn-outline-primary" ng-click="relocate()">Refresh Token</button>
+        </div>
     </div>
+
 </div>

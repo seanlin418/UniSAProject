@@ -26,7 +26,7 @@ var myApp = angular.module('myApp', ['ngRoute', 'LocalStorageModule'])
 var serviceBase = 'http://localhost:8000/';
 myApp.constant('UniSAApiSettings', {
     apiServiceBaseUri: serviceBase,
-    clientId: 'UniSA.Web'
+    clientId: 'UniSA.WebApp'
 });
 
 myApp.run(['authService', function (authService) {
@@ -39,7 +39,7 @@ myApp.config(['$qProvider', function ($qProvider) {
 }]);
 
 
-myApp.factory('authInterceptorService', ['$q', '$injector', '$location', 'localStorageService', function ($q, $injector, $location, localStorageService) {
+myApp.factory("authInterceptorService", ["$q", "$injector", "$location", "localStorageService", function ($q, $injector, $location, localStorageService) {
 
     var authInterceptorServiceFactory = {};
 
@@ -66,13 +66,12 @@ myApp.factory('authInterceptorService', ['$q', '$injector', '$location', 'localS
                 var authService = $injector.get('authService');
                 var authData = localStorageService.get('authorizationData');
 
-                if (authData) {
-                    if (authData.useRefreshTokens) {
-                        $location.path('/refresh');
-                        return $q.reject(rejection);
-                    }
+                if (!authData) {
+                    authService.logout(false);
+                } else {
+                    authService.logout(true);
                 }
-                authService.logOut();
+                
                 $location.path('/login');
             }
             return $q.reject(rejection);

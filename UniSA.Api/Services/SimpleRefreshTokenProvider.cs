@@ -30,11 +30,11 @@ namespace UniSA.Services
 
                 var token = new RefreshToken()
                 {
-                    Id = HelperService.GetHash(refreshTokenId),
+                    Id = Helpers.GetHash(refreshTokenId),
                     ClientId = clientid,
                     Subject = context.Ticket.Identity.Name,
                     IssuedUtc = DateTime.UtcNow,
-                    ExpiresUtc = DateTime.UtcNow.AddMinutes(Convert.ToDouble(refreshTokenLifeTime))
+                    ExpiresUtc = DateTime.UtcNow.AddSeconds(Convert.ToDouble(refreshTokenLifeTime))
                 };
 
                 context.Ticket.Properties.IssuedUtc = token.IssuedUtc;
@@ -58,7 +58,7 @@ namespace UniSA.Services
             var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin");
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
 
-            string hashedTokenId = HelperService.GetHash(context.Token);
+            string hashedTokenId = Helpers.GetHash(context.Token);
 
             using (ClientRepository _repo = new ClientRepository())
             {

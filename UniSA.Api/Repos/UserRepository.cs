@@ -13,31 +13,41 @@ namespace UniSA.Api.Repos
     public class UserRepository : IUserRepository, IDisposable
     {
         private ApplicationDbContext _ctx;
-        private UserManager<IdentityUser> _userManager;
+        private UserManager<ApplicationUser> _userManager;
 
         //Empty constructor is required by Startup Configuration, 
         //which required signture of Configuration (IAppBuilder app) with only IAppBuilder as input param.
         public UserRepository()
         {
             _ctx = new ApplicationDbContext();
-            _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
+            _userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_ctx));
         }
 
         public UserRepository(ApplicationDbContext ctx)
         {
             this._ctx = ctx;
-            this._userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
+            this._userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_ctx));
         }
 
-        public async Task<IdentityResult> RegisterUser(RegisterViewModel registerViewModel)
+        public async Task<IdentityResult> Add(ApplicationUser newUser, string password)
         {
-            IdentityUser user = new IdentityUser
+            IdentityResult result = null;
+
+            var existUser = await this._userManager.FindByEmailAsync(newUser.Email);
+
+            if(existUser != null)
             {
-                UserName = registerViewModel.UserName
-            };
+                result = new IdentityResult(new String[] { String.Format("{0} is already a Microsoft account. Try another name. If it's yours, sign in now.", newUser.Email) });
+                return result;
+            }
 
-            var result = await _userManager.CreateAsync(user, registerViewModel.Password);
+            result = await _userManager.CreateAsync(newUser, password);
+            return result;
+        }
 
+        public async Task<IdentityResult> Delete(ApplicationUser newUser)
+        {
+            var result = await _userManager.DeleteAsync(newUser);
             return result;
         }
 
@@ -47,6 +57,20 @@ namespace UniSA.Api.Repos
 
             return user;
         }
+
+        public async Task<IdentityUser> FindById(string userId)
+        {
+            IdentityUser user = await _userManager.FindByIdAsync(userId);
+
+            return user;
+        }
+
+        public async Task<IdentityUser> FindByEmailAsync(string email)
+        {
+            IdentityUser user = await _userManager.FindByEmailAsync(email);
+            return user;
+        }
+
 
         public void Dispose()
         {
