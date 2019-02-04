@@ -33,6 +33,8 @@ namespace UniSA.Api
 
             //OWIN Middleware - Configure WebApi
             ConfigureWebApi(app);
+
+       
         }
 
         public void ConfigureOAuth(IAppBuilder app)
@@ -44,7 +46,7 @@ namespace UniSA.Api
                 AllowInsecureHttp = true,
                 ApplicationCanDisplayErrors = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromSeconds(5),
+                AccessTokenExpireTimeSpan = TimeSpan.FromSeconds(10),
                 Provider = new SimpleAuthorizationServerProvider(),
                 RefreshTokenProvider = new SimpleRefreshTokenProvider()
             };

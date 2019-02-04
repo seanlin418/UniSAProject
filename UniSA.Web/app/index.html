@@ -1,53 +1,201 @@
-﻿<html lang="en" ng-app="myApp">
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
 <head>
-    <meta charset="utf-8" />
-    <title>UniSA Allowcate+</title>
-    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="../Content/bootstrap-sandstone.min.css" rel="stylesheet" />
+    <!-- Title -->
+    <title>UniSA | MapleLeaf Online </title>
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Google Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="../Content/assets/vendor/font-awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../Content/assets/vendor/animate.css/animate.min.css">
+    <link rel="stylesheet" href="../Content/assets/vendor/hs-megamenu/src/hs.megamenu.css">
+    <link rel="stylesheet" href="../Content/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="../Content/assets/vendor/fancybox/jquery.fancybox.css">
+    <link rel="stylesheet" href="../Content/assets/vendor/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="../Content/assets/vendor/dzsparallaxer/dzsparallaxer.css">
+    <!-- CSS Front Template -->
+    <link rel="stylesheet" href="../Content/assets/css/theme.css">
 </head>
-<div class="container" ng-controller="indexController">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#/">UniSApp</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#/signup" ng-hide="authentication.isAuth">SignUp</a>
-                </li>
-                <li class="nav-item">
-                    <a ng-hide="authentication.isAuth" class="nav-link" href="#/login">Login</a>
-                </li>
-                <li>
-                    <a href="" class="nav-link" ng-hide="!authentication.isAuth" ng-click="logout()">Logout</a>
-                </li>
-                <li>
-                    <a href="" class="nav-link" ng-click="relocate()">Relocate</a>
-                </li>
-                <li>
-                    <label class="mr-sm-2">
-                        <font size="3" color="white">{{debugStr}}</font>
-                    </label>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <label class="mr-sm-2">
-                    <font size="3" color="white">Welcome {{authentication.userName}} !</font>
-                </label>
-            </form>
-        </div>
-    </nav>
-    <ng-view></ng-view>
-</div>
 <body>
+    <div ng-controller="indexController">
+        <!-- ========== HEADER ========== -->
+        <header id="header" class="u-header u-header--abs-top-md u-header--show-hide-md"
+                data-header-fix-moment="500"
+                data-header-fix-effect="slide">
+
+            <div class="u-header__section">
+                <!-- Topbar -->
+                <div class="container u-header__hide-content pt-2">
+                    <div class="d-flex align-items-center">
+                        <!-- Language -->
+                        <div class="position-relative">
+                            <a id="languageDropdownInvoker" class="dropdown-nav-link dropdown-toggle d-flex align-items-center" href="javascript:;" role="button"
+                               aria-controls="languageDropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false"
+                               data-unfold-event="hover"
+                               data-unfold-target="#languageDropdown"
+                               data-unfold-type="css-animation"
+                               data-unfold-duration="300"
+                               data-unfold-delay="300"
+                               data-unfold-hide-on-scroll="true"
+                               data-unfold-animation-in="slideInUp"
+                               data-unfold-animation-out="fadeOut">
+                                <img class="dropdown-item-icon" src="../Content/assets/vendor/flag-icon-css/flags/4x3/us.svg" alt="SVG">
+                                <span class="d-inline-block d-sm-none">US</span>
+                                <span class="d-none d-sm-inline-block">United States</span>
+                            </a>
+                            <div id="languageDropdown" class="dropdown-menu dropdown-unfold" aria-labelledby="languageDropdownInvoker">
+                                <a class="dropdown-item active" href="#">English</a>
+                                <a class="dropdown-item" href="#">Chinese</a>
+                            </div>
+                        </div>
+                        <!-- End Language -->
+                    </div>
+                </div>
+                <!-- End Topbar -->
+                <div id="logoAndNav" class="container">
+                    <!-- Nav -->
+                    <nav class="js-mega-menu navbar navbar-expand-md u-header__navbar u-header__navbar--no-space">
+                        <!-- Logo -->
+                        <a class="navbar-brand u-header__navbar-brand u-header__navbar-brand-center" href="#/" aria-label="UniSAOnline">
+                            <img src="/app/res/unisa-logo.jpg" />
+                        </a>
+                        <!-- End Logo -->
+                        <!-- Responsive Toggle Button -->
+                        <button type="button" class="navbar-toggler btn u-hamburger"
+                                aria-label="Toggle navigation"
+                                aria-expanded="false"
+                                aria-controls="navBar"
+                                data-toggle="collapse"
+                                data-target="#navBar">
+                            <span id="hamburgerTrigger" class="u-hamburger__box">
+                                <span class="u-hamburger__inner"></span>
+                            </span>
+                        </button>
+                        <!-- End Responsive Toggle Button -->
+                        <!-- Navigation -->
+                        <div id="navBar" class="collapse navbar-collapse u-header__navbar-collapse">
+                            <ul class="navbar-nav u-header__navbar-nav">
+                                <!-- Admin -->
+                                <li class="nav-item u-header__nav-item">
+                                    <a class="nav-link u-header__nav-link" href="#homeSection">Admin</a>
+                                </li>
+                                <!-- End Admin -->
+                                <!-- SignIn -->
+                                <li class="nav-item hs-has-mega-menu u-header__nav-item"
+                                    data-event="hover"
+                                    data-animation-in="slideInUp"
+                                    data-animation-out="fadeOut"
+                                    data-max-width="260px"
+                                    data-position="right">
+                                    <a ng-hide="authentication.isAuth" id="docsMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">LOGIN</a>
+                                    <!-- Docs - Submenu -->
+                                    <div class="hs-mega-menu u-header__sub-menu" aria-labelledby="docsMegaMenu" style="min-width: 330px;">
+                                        <!-- Promo Item -->
+                                        <div class="u-header__promo-item">
+                                            <a class="u-header__promo-link" href="#/login">
+                                                <div class="media align-items-center">
+                                                    <div class="media-body">
+                                                        <span class="u-header__promo-title">
+                                                            Students
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <!-- End Promo Item -->
+                                        <!-- Promo Item -->
+                                        <div class="u-header__promo-item">
+                                            <a class="u-header__promo-link" href="#/login">
+                                                <div class="media align-items-center">
+                                                    <div class="media-body">
+                                                        <span class="u-header__promo-title">Staff</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- End Signin - Submenu -->
+                                </li>
+                                <!-- End Signin -->
+                                <!-- SignOut -->
+                                <li class="nav-item u-header__nav-item">
+                                    <a ng-hide="!authentication.isAuth && !isRefreshTokensAvailable" class="nav-link u-header__nav-link" href="#homeSection">SignOut</a>
+                                </li>
+                                <!-- End SignOut -->
+                                <!-- Button -->
+                                <li class="nav-item u-header__nav-item">
+                                    <a ng-hide="authentication.isAuth" class="btn btn-sm btn-primary transition-3d-hover" href="#/signup">
+                                        Register
+                                    </a>
+                                </li>
+                                <!-- End Button -->
+                                <!-- Welcome Message -->
+                                <li class="nav-item u-header__nav-last-item">
+                                    <!-- Title -->
+                                    <a class="h5 text-primary font-weight-normal mb-0">Welcome <span class="font-weight-semi-bold">{{authentication.userName}}</span>  !</a>
+                                    <!-- End Title -->
+                                </li>
+                                <!-- End Welcome Message -->
+                            </ul>
+                        </div>
+                        <!-- End Navigation -->
+                    </nav>
+                    <!-- End Nav -->
+                </div>
+            </div>
+        </header>
+        <!-- ========== END HEADER ========== -->
+        <!-- ========== MAIN CONTENT ========== -->
+        <window-event-catcher></window-event-catcher>
+        <main id="content" role="main">
+            <ng-view></ng-view>
+        </main>
+        <!-- ========== END MAIN CONTENT ========== -->
+    </div>
+
+    <!-- jQuery and plugins -->
+    <!--<script src="../Scripts/jquery-3.3.1.min.js"></script>-->
+    <script src="../Content/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="../Scripts/plugins/dobpicker.js"></script>
+    <script src="../Scripts/plugins/jquery.knob.js"></script>
+
+    <!-- JS Global Compulsory -->
+
+    <script src="../Content/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+    <script src="../Content/assets/vendor/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../Content/assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <!-- JS Implementing Plugins -->
+    <script src="../Content/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+    <script src="../Content/assets/vendor/svg-injector/dist/svg-injector.min.js"></script>
+    <script src="../Content/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../Content/assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="../Content/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+    <script src="../Content/assets/vendor/typed.js/lib/typed.min.js"></script>
+    <script src="../Content/assets/vendor/slick-carousel/slick/slick.js"></script>
+    <script src="../Content/assets/vendor/dzsparallaxer/dzsparallaxer.js"></script>
+
+    <!-- JS Front -->
+    <script src="../Content/assets/js/hs.core.js"></script>
+    <script src="../Content/assets/js/components/hs.header.js"></script>
+    <script src="../Content/assets/js/components/hs.unfold.js"></script>
+    <script src="../Content/assets/js/components/hs.focus-state.js"></script>
+    <script src="../Content/assets/js/components/hs.malihu-scrollbar.js"></script>
+    <script src="../Content/assets/js/components/hs.validation.js"></script>
+    <script src="../Content/assets/js/components/hs.fancybox.js"></script>
+    <script src="../Content/assets/js/components/hs.slick-carousel.js"></script>
+    <script src="../Content/assets/js/components/hs.show-animation.js"></script>
+    <script src="../Content/assets/js/components/hs.svg-injector.js"></script>
+    <script src="../Content/assets/js/components/hs.go-to.js"></script>
+
+
+    <!--UniSA related files-->
     <script src="../Scripts/angular.js"></script>
     <script src="../Scripts/angular-local-storage.min.js"></script>
-    <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/bootstrap.js"></script>
     <script src="../Scripts/angular-resource.min.js"></script>
     <script src="../Scripts/angular-route.min.js"></script>
@@ -58,5 +206,79 @@
     <script src="../app/authentication/authService.js"></script>
     <script src="../app/authentication/signup-controller.js"></script>
     <script src="../app/authentication/login-controller.js"></script>
+    <script src="../app/admin/admin-controller.js"></script>
+    <script src="../app/admin/tabs/school/adminSchoolsTab-controller.js"></script>
+    <script src="../app/admin/tabs/school/adminStudents-controller.js"></script>
+    <script src="../app/admin/tabs/school/adminTeachers-controller.js"></script>
+
+    <!-- Custom directives-->
+    <script src="../app/customDirectives/dobPicker.js"></script>
+    <script src="../app/customDirectives/knob.js"></script>
+    <script src="../app/customDirectives/WindowEventCatcher.js"></script>
+
+
+    <!-- JS Plugins Init. -->
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            // initialization of HSMegaMenu component
+            $('.js-mega-menu').HSMegaMenu({
+                event: 'hover',
+                pageContainer: $('.container'),
+                breakpoint: 767.98,
+                hideTimeOut: 0
+            });
+
+            // initialization of svg injector module
+            $.HSCore.components.HSSVGIngector.init('.js-svg-injector');
+        });
+
+        $(document).on('ready', function () {
+            // initialization of header
+            $.HSCore.components.HSHeader.init($('#header'));
+
+            // initialization of unfold component
+            $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
+                afterOpen: function () {
+                    $(this).find('input[type="search"]').focus();
+                }
+            });
+
+            // initialization of malihu scrollbar
+            $.HSCore.components.HSMalihuScrollBar.init($('.js-scrollbar'));
+
+            // initialization of forms
+            $.HSCore.components.HSFocusState.init();
+
+            // initialization of form validation
+            $.HSCore.components.HSValidation.init('.js-validate', {
+                rules: {
+                    confirmPassword: {
+                        equalTo: '#signupPassword'
+                    }
+                }
+            });
+
+            // initialization of show animations
+            $.HSCore.components.HSShowAnimation.init('.js-animation-link');
+
+            // initialization of fancybox
+            $.HSCore.components.HSFancyBox.init('.js-fancybox');
+
+            // initialization of text animation (typing)
+            //var typed = new Typed(".u-text-animation.u-text-animation--typing", {
+            //    strings: ["more professional.", "perfect in every way.", "astonishing."],
+            //    typeSpeed: 60,
+            //    loop: true,
+            //    backSpeed: 25,
+            //    backDelay: 1500
+            //});
+
+            // initialization of slick carousel
+            $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+
+            // initialization of go to
+            $.HSCore.components.HSGoTo.init('.js-go-to');
+        });
+    </script>
 </body>
 </html>

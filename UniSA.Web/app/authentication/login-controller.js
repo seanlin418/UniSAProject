@@ -1,20 +1,19 @@
 ﻿'use strict'
 myApp.controller("loginController", ["$scope", "$location", "authService", "$http", "localStorageService", function ($scope, $location, authService, $http, localStorageService) {
 
-    $scope.inputData = {
-        emailOrUserName: "",
-        password: ""
+    $scope.input = {
+        emailOrUserName: "", password: ""
     }
 
     var init = function () {
         var authData = localStorageService.get('authorizationData');
-        $scope.refreshTokenByPass = false;
+        $scope.isRefreshTokensAvailable = false;
 
         if (authData) {
-            $scope.inputData.emailOrUserName = authData.userName;
-            $scope.refreshTokenByPass = true;
+            $scope.input.emailOrUserName = authData.userName;
+            $scope.isRefreshTokensAvailable = true;
         } else {
-            $scope.refreshTokenByPass = false;
+            $scope.isRefreshTokensAvailable = false;
         }
 
     };
@@ -24,8 +23,7 @@ myApp.controller("loginController", ["$scope", "$location", "authService", "$htt
     var _loginData = {
         userName: "",
         email: "",
-        password: "",
-        useRefreshTokens: true
+        password: ""
     };
 
     function _validateEmail(email) {
@@ -37,7 +35,7 @@ myApp.controller("loginController", ["$scope", "$location", "authService", "$htt
 
     $scope.login = function () {
 
-        if ($scope.refreshTokenByPass) {
+        if ($scope.isRefreshTokensAvailable) {
             authService.refreshToken().then(function (response) {
                 $location.path("/Web");
             },
@@ -50,12 +48,14 @@ myApp.controller("loginController", ["$scope", "$location", "authService", "$htt
             return;
         }
 
-        if (_validateEmail($scope.inputData.emailOrUserName)) {
-            _loginData.email = $scope.inputData.emailOrUserName;
+        _loginData = { userName: "", email: "", password: ""}
+
+        if (_validateEmail($scope.input.emailOrUserName)) {
+            _loginData.email = $scope.input.emailOrUserName;
         } else {
-            _loginData.userName = $scope.inputData.emailOrUserName;
+            _loginData.userName = $scope.input.emailOrUserName;
         }
-        _loginData.password = $scope.inputData.password;    
+        _loginData.password = $scope.input.password;    
 
         authService.login(_loginData).then(function (response) {
             $location.path("/Web");

@@ -15,7 +15,13 @@ var myApp = angular.module('myApp', ['ngRoute', 'LocalStorageModule'])
 
         $routeProvider.when('/signup', {
             templateUrl: '/app/authentication/signup.html',
-            controller: 'signUpController'
+            controller: 'signUpController',
+            controllerAs: 'vm'
+        });
+
+        $routeProvider.when('/admin', {
+            templateUrl: '/app/admin/admin.html',
+            controller: 'adminController'
         });
 
     }).config(['$locationProvider', function ($locationProvider) {
@@ -65,13 +71,12 @@ myApp.factory("authInterceptorService", ["$q", "$injector", "$location", "localS
             if (rejection.status === 401) {
                 var authService = $injector.get('authService');
                 var authData = localStorageService.get('authorizationData');
-
-                if (!authData) {
-                    authService.logout(false);
+                if (authData) {
+                    authService.authentication.isAuth = false;
+                    authService.authentication.userName = "";
                 } else {
-                    authService.logout(true);
+                    authService.logout();
                 }
-                
                 $location.path('/login');
             }
             return $q.reject(rejection);
@@ -83,3 +88,10 @@ myApp.factory("authInterceptorService", ["$q", "$injector", "$location", "localS
 myApp.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
 }]);
+
+myApp.run(function ($rootScope) {
+    $rootScope.$on("$locationChangeStart", function (event, next, current) {
+
+    });
+});
+

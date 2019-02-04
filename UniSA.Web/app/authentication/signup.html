@@ -1,7 +1,228 @@
-﻿<div ng-controller="signUpController">
+﻿<!-- Hero Section -->
+
+
+<!--<div class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll" data-options='{direction: "normal"}'>
+    <div class="divimage dzsparallaxer--target" style="height: 130%; background-image: url(../../app/res/promo-background-study.jpg);"></div>
+
+    <div class="container position-relative space-2 space-top-md-5 space-bottom-md-3 z-index-2">
+        <div class="text-center w-lg-80 mx-auto">
+            <h1 class="text-white display-1 font-size-md-down-5 font-weight-semi-bold">Register Online</h1>
+        </div>
+
+        <div class="text-center w-lg-40 mx-auto">
+            <p class="lead text-white-70">Please enter your detail in the following form to complete the registration.</p>
+        </div>
+    </div>
+</div>-->
+
+
+<div class="dzsparallaxer auto-init out-of-bootstrap mode-scroll height-is-based-on-content" data-options='{ direction: "normal"}'>
+    <div class="divimage dzsparallaxer--target" style="height: 120%; background-image: url(../../app/res/promo-background-study.jpg)">
+    </div>
+    <div class="container position-relative space-2 space-top-md-5 space-bottom-md-3 z-index-2">
+        <div class="text-center w-lg-80 mx-auto">
+            <h1 class="text-white display-1 font-size-md-down-5 font-weight-semi-bold">Register Online</h1>
+        </div>
+
+        <div class="text-center w-lg-70 mx-auto">
+            <p class="lead text-white-70">Please enter your detail in the following form to complete the registration.</p>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Login Form -->
+<div class="container space-1">
+    <div class="border-bottom pb-3 mb-4">
+        <h4 class="font-weight-semi-bold">Registration Form</h4>
+    </div>
+
+    <form name="registerForm" class="js-validate" novalidate>
+        <div class="alert alert-primary row" role="alert">
+            <p>Please provide some introductory details about yourself below. Once you have finished entering your details, use the 'Proceed with Registration' button provided at the bottom of the page to continue with your registration.</p>
+            <p><strong>*Mandatory fields</strong></p>
+        </div>
+
+        <div class="shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="row">
+                <!-- Input -->
+                <div class="col-md-6 mb-2">
+                    <label class="form-label">
+                        Gender
+                        <span class="text-danger">*</span>
+                    </label>
+                    <div class="form-group">
+                        <select class="custom-select"  
+                                required 
+                                ng-model="selectedGender" ng-options="val as key for (key, val) in vm.genderOptions"
+                                ng-change="vm.onGenderChanged(selectedGender)"></select>
+                    </div>
+                </div>
+
+                <!-- Input -->
+                <div class="col-md-6 mb-2">
+                    <label id="nameLabel" class="form-label">
+                        User Name
+                        <span class="text-danger">*</span>
+                    </label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="userName" value="" placeholder="User Name" ng-model="registration.userName" required
+                               data-error-class="u-has-error"
+                               data-success-class="u-has-success" />
+                        <small id="userNameHelp" style="color: red;" ng-show="registerForm.userName.$error.required && registerForm.userName.$dirty">Please enter your user name.</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <!-- Input -->
+                <div class="col-sm-6 mb-2">
+                    <label id="nameLabel" class="form-label">
+                        First Name
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" id="firstNameId" name="firstName" ng-model="registration.firstName" placeholder="First Name" required
+                           data-error-class="u-has-error"
+                           data-success-class="u-has-success" />
+                    <small id="userNameHelp" style="color: red;" ng-show="registerForm.firstName.$error.required && registerForm.firstName.$dirty">Please enter your first name.</small>
+                </div>
+                <!-- End Input -->
+                <!-- Input -->
+                <div class="col-sm-6 mb-2">
+                    <label id="usernameLabel" class="form-label">
+                        Last Name
+                        <span class="text-danger">*</span>
+                    </label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="lastNameId" name="lastName" ng-model="registration.lastName" placeholder="Last Name" required
+                               data-error-class="u-has-error"
+                               data-success-class="u-has-success" />
+                        <small id="userNameHelp" style="color: red;" ng-show="registerForm.lastName.$error.required && registerForm.lastName.$dirty">Please enter a last name.</small>
+                    </div>
+                </div>
+                <!-- End Input -->
+            </div>
+
+            <!--Initialise dob picker directive-->
+            <dob-picker hidden/>
+
+            <label class="form-label">
+                Birth date
+                <span class="text-danger">*</span>
+            </label>
+            <div class="row">
+                <!-- Input -->
+                <div class="col-md-6 mb-2 mb-sm-2">
+                    <div class="js-form-message">
+                        <div class="form-group">
+                            <select class="custom-select" required id="dobmonth" />
+                        </div>
+                    </div>
+                </div>
+                <!-- End Input -->
+                <!-- Input -->
+                <div class="col-sm-4 col-md-3 mb-2 mb-sm-2">
+                    <div class="js-form-message">
+                        <div class="form-group">
+                            <select class="custom-select" required id="dobday"></select>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Input -->
+                <!-- Input -->
+                <div class="col-sm-4 col-md-3 mb-2 mb-sm-2">
+                    <div class="js-form-message">
+                        <div class="form-group">
+                            <select class="custom-select" required id="dobyear"></select>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Input -->
+            </div>
+            <div class="row">
+                <!-- Input -->
+                <div class="col-sm-6 mb-6">
+                    <div class="js-form-message">
+                        <label id="emailLabel" class="form-label">
+                            Email address
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="form-group">
+                            <div class="js-focus-state">
+                                <input type="email" class="form-control" name="email" value="natalie.curtis@gmail.com" placeholder="Enter your email address" aria-label="Enter your email address" required aria-describedby="emailLabel"
+                                       data-msg="Please enter a valid email address."
+                                       data-error-class="u-has-error"
+                                       data-success-class="u-has-success">
+                            </div>
+                            <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Input -->
+                <!-- Input -->
+                <div class="col-sm-6 mb-6">
+                    <div class="js-form-message">
+                        <label id="locationLabel" class="form-label">
+                            Location
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="location" value="London, England" placeholder="Enter your location" aria-label="Enter your location" required aria-describedby="locationLabel"
+                                   data-msg="Please enter your location."
+                                   data-error-class="u-has-error"
+                                   data-success-class="u-has-success">
+                        </div>
+                    </div>
+                </div>
+                <!-- End Input -->
+            </div>
+            <div class="row">
+                <!-- Input -->
+                <div class="col-sm-6 mb-6">
+                    <div class="js-form-message">
+                        <label id="organizationLabel" class="form-label">
+                            Organization
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="organization" value="Pixeel Ltd." placeholder="Enter your organization name" aria-label="Enter your organization name" required aria-describedby="organizationLabel"
+                                   data-msg="Please enter your organization name"
+                                   data-error-class="u-has-error"
+                                   data-success-class="u-has-success">
+                        </div>
+                    </div>
+                </div>
+                <!-- End Input -->
+                <!-- Input -->
+                <div class="col-sm-6 mb-6">
+                    <div class="js-form-message">
+                        <label id="websiteLabel" class="form-label">
+                            Website
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="form-group">
+                            <input class="form-control" type="url" name="website" value="https://www.htmlstream.com/natalie" placeholder="Enter your website" aria-label="Enter your website" required aria-describedby="websiteLabel"
+                                   data-msg="Password enter a valid website"
+                                   data-error-class="u-has-error"
+                                   data-success-class="u-has-success">
+                            <small class="form-text text-muted">Your home page, blog or company site, e.g. http://example.com</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Input -->
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!-- End Hero Section -->
+<!--<div ng-controller="signUpController">
     <div class="container">
         <form name="registerForm" novalidate>
-            <fieldset>
+            <fieldset ng-disabled="isProcessing">
                 <legend>Sign Up</legend>
                 <div style="margin-left:15px">
                     <div class="form-group row">
@@ -46,7 +267,6 @@
 
                     <div class="form-group row">
                         <button type="submit" class="btn btn-outline-primary" ng-disabled="registerForm.$invalid" ng-click="signUp(registration)">SignUp</button>
-                        <button type="button" class="btn btn-outline-secondary">Cancel</button>
                     </div>
 
                     <div class="form-group row">
@@ -56,4 +276,4 @@
             </fieldset>
         </form>
     </div>
-</div>
+</div>-->
